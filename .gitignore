@@ -1,3 +1,9 @@
+# macOS
+.DS_Store
+
+# My Backup
+src/stack_backup.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
