@@ -12,6 +12,7 @@ python = "^3.11"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^6.0.0"
+coverage = "^7.2.7"
 
 [build-system]
 requires = ["poetry-core"]
