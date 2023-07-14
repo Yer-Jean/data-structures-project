@@ -24,3 +24,17 @@ class TestQueue(unittest.TestCase):
 
         # Проверяем магический метод __str__
         assert str(queue) == "test1\ntest2\ntest3"
+
+    def test_dequeue(self):
+        queue = Queue()
+        queue.enqueue('test1')
+        queue.enqueue('test2')
+        queue.enqueue('test3')
+        self.assertEqual(queue.dequeue(), 'test1')
+        self.assertEqual(queue.dequeue(), 'test2')
+        self.assertEqual(queue.dequeue(), 'test3')
+        self.assertIsNone(queue.dequeue())
+
+
+if __name__ == '__main__':
+    unittest.main()
