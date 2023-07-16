@@ -38,3 +38,26 @@ class TestLinkedList(unittest.TestCase):
             _ = ll.head.next_node.next_node.next_node.data
 
         self.assertEqual(str(ll), "{'id': 1} -> {'id': 2} -> None")
+
+    def test_delete(self):
+        ll = LinkedList()
+        self.assertEqual(ll.delete_beginning(), None)
+        self.assertEqual(ll.delete_at_end(), None)
+
+        ll.insert_beginning({'id': 1})
+        ll.insert_at_end({'id': 2})
+        ll.insert_at_end({'id': 3})
+        ll.insert_beginning({'id': 0})
+        self.assertEqual(str(ll), "{'id': 0} -> {'id': 1} -> {'id': 2} -> {'id': 3} -> None")
+
+        ll.delete_at_end()
+        ll.delete_beginning()
+        self.assertEqual(str(ll), "{'id': 1} -> {'id': 2} -> None")
+
+        ll.delete_beginning()
+        ll.delete_at_end()
+        self.assertEqual(str(ll), "None")
+
+        ll.insert_beginning({'id': 1})
+        ll.delete_beginning()
+        self.assertEqual(str(ll), "None")
