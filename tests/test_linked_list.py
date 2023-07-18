@@ -61,3 +61,26 @@ class TestLinkedList(unittest.TestCase):
         ll.insert_beginning({'id': 1})
         ll.delete_beginning()
         self.assertEqual(str(ll), "None")
+
+    def test_to_list(self):
+        ll = LinkedList()
+        lst = ll.to_list()
+        self.assertEqual(len(lst), 0)
+
+        ll.insert_beginning({'id': 1, 'username': 'lazzy508509'})
+        ll.insert_at_end({'id': 2, 'username': 'mik.roz'})
+        ll.insert_at_end({'id': 3, 'username': 'mosh_s'})
+        ll.insert_beginning({'id': 0, 'username': 'serebro'})
+
+        lst = ll.to_list()
+        self.assertEqual(len(lst), 4)
+        self.assertEqual(lst[1], {'id': 1, 'username': 'lazzy508509'})
+
+    def test_get_data_by_id(self):
+        ll = LinkedList()
+        self.assertEqual(ll.get_data_by_id(2), {})
+
+        ll.insert_beginning({'id': 1, 'username': 'lazzy508509'})
+        ll.insert_at_end('idusername')
+        ll.insert_at_end({'id': 2, 'username': 'mosh_s'})
+        self.assertEqual(ll.get_data_by_id(2), {'id': 2, 'username': 'mosh_s'})
