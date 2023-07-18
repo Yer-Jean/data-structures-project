@@ -13,7 +13,7 @@ class LinkedList:
         self.head = None        # Начальный узел
         self.tail = None        # Конечный узел
 
-    def insert_beginning(self, data: dict) -> None:
+    def insert_beginning(self, data) -> None:
         """Принимает данные (словарь) и добавляет узел с этими данными в начало связанного списка"""
         new_node: Node = Node(data)         # Инициализируем новый узел
         if self.head is None:               # Если список пуст,
@@ -24,7 +24,7 @@ class LinkedList:
             self.head = new_node            # Новой головой становится новый узел
             self.head.next_node = temp      # ссылку на второй узел после головного берем из временного узла
 
-    def insert_at_end(self, data: dict) -> None:
+    def insert_at_end(self, data) -> None:
         """Принимает данные (словарь) и добавляет узел с этими данными в конец связанного списка"""
         new_node: Node = Node(data)         # Инициализируем новый узел
         if self.head is None:               # Если список пуст,
@@ -57,6 +57,31 @@ class LinkedList:
         else:
             self.head = None                    # Если в списке только один узел
             self.tail = None                    # то удаляем его, очищая весь список
+
+    def to_list(self) -> list:
+        node = self.head                        # Начинаем обход списка с головного узла
+        if node is None:                        # Если его нет, то
+            return []                           # возвращаем пустой список
+
+        ll_data_list = []
+        while node:                             # Пока не дошли до конца списка
+            ll_data_list.append(node.data)      # получаем данные из узла и
+            node = node.next_node               # переходим к следующему узлу
+        return ll_data_list
+
+    def get_data_by_id(self, key_id) -> dict:
+        node = self.head                        # Начинаем обход списка с головного узла
+        if node is None:                        # Если его нет, то
+            return {}                           # возвращаем пустой список
+
+        while node:
+            try:
+                if node.data['id'] == key_id:   # Если находим значение по ключу в узле
+                    return node.data            # то возвращаем это значение
+            except TypeError:                   # Обрабатываем ошибку, если в узле неподходящие данные
+                print('Данные не являются словарем или в словаре нет id.')
+            finally:
+                node = node.next_node           # Переходим к следующему узлу
 
     def __str__(self) -> str:
         """Вывод данных односвязного списка в строковом представлении"""
